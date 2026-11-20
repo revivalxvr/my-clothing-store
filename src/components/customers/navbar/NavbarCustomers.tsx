@@ -98,7 +98,7 @@ export default function NavbarLoggedIn({
           </button>
 
           <a
-            href="#"
+            href="/"
             className="text-2xl font-serif tracking-widest font-bold text-stone-900"
           >
             ATELIER

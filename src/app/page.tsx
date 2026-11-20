@@ -8,6 +8,7 @@ import CartDrawer, { type CartItem } from "@/src/components/CartDrawer";
 import Blog from "@/src/components/Blog";
 import Sustainability from "@/src/components/Sustainability";
 import Footer from "@/src/components/Footer";
+import { ThemeToggle } from "../components/ui/ThemeToggle";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("preview");
@@ -36,7 +37,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-stone-900 selection:text-white">
+    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
       {}
       {notification && (
         <div className="fixed top-20 right-6 z-50 bg-stone-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 animate-fade-in border border-stone-800">

@@ -89,121 +89,144 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
   };
 
   return (
-    <div className="min-h-screen bg-stone-950 text-stone-100 flex flex-col justify-between selection:bg-amber-500 selection:text-stone-950">
-      <HeaderAuth />
+ 
+<div className="min-h-screen bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 flex flex-col justify-between selection:bg-amber-500 selection:text-stone-950 transition-colors">
 
-      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 my-8">
-        <div className="w-full max-w-md bg-stone-900 border border-stone-800/80 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
-          
-          <div className="text-center mb-8">
-            <h1 className="font-serif text-3xl font-bold tracking-tight text-white mb-2">
-              Welcome Back
-            </h1>
-            <p className="text-xs text-stone-400 font-light leading-relaxed">
-              Enter your credentials to access your private collection and orders 
-            </p>
+
+  <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 my-8">
+    <div className="w-full max-w-md bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800/80 rounded-3xl p-6 sm:p-10 shadow-xl dark:shadow-2xl backdrop-blur-sm transition-colors">
+
+      <div className="text-center mb-8">
+        <h1 className="font-serif text-3xl font-bold tracking-tight text-stone-900 dark:text-white mb-2">
+          Welcome Back
+        </h1>
+        <p className="text-xs text-stone-500 dark:text-stone-400 font-light leading-relaxed">
+          Enter your credentials to access your private collection and orders
+        </p>
+      </div>
+
+      <AuthSwitcher mode="login" />
+
+      <form onSubmit={handleSubmit} className="space-y-5">
+
+        {/* Email */}
+        <div className="space-y-1.5">
+          <label className="text-xs uppercase tracking-wider text-stone-600 dark:text-stone-300 font-medium">
+            Email Address
+          </label>
+
+          <div className="relative">
+            <Mail className="w-4 h-4 text-stone-400 dark:text-stone-500 absolute left-4 top-1/2 -translate-y-1/2" />
+
+            <input
+              type="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="name@example.com"
+              className="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 text-sm pl-11 pr-4 py-3.5 rounded-xl focus:outline-none focus:border-amber-500 transition-colors placeholder:text-stone-400 dark:placeholder:text-stone-600"
+            />
           </div>
-
-          <AuthSwitcher mode="login" />
-
-          <form onSubmit={handleSubmit} className="space-y-5">
-           
-            <div className="space-y-1.5">
-              <label className="text-xs uppercase tracking-wider text-stone-300 font-medium">
-                Email Address
-              </label>
-              <div className="relative">
-                <Mail className="w-4 h-4 text-stone-500 absolute left-4 top-1/2 -translate-y-1/2" />
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="name@example.com"
-                  className="w-full bg-stone-950 border border-stone-800 text-stone-100 text-sm pl-11 pr-4 py-3.5 rounded-xl focus:outline-none focus:border-amber-500 transition-colors placeholder:text-stone-600"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-1.5">
-              <div className="flex items-center justify-between">
-                <label className="text-xs uppercase tracking-wider text-stone-300 font-medium">
-                  Password
-                </label>
-                <a
-                  href="#"
-                  className="text-xs text-amber-500 hover:underline font-light"
-                >
-                  Forgot Password?
-                </a>
-              </div>
-              <div className="relative">
-                <Lock className="w-4 h-4 text-stone-500 absolute left-4 top-1/2 -translate-y-1/2" />
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  required
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  placeholder="••••••••"
-                  className="w-full bg-stone-950 border border-stone-800 text-stone-100 text-sm pl-11 pr-11 py-3.5 rounded-xl focus:outline-none focus:border-amber-500 transition-colors placeholder:text-stone-600"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-500 hover:text-stone-300"
-                >
-                  {showPassword ? (
-                    <EyeOff className="w-4 h-4" />
-                  ) : (
-                    <Eye className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2 pt-1">
-              <input
-                type="checkbox"
-                id="remember"
-                className="rounded border-stone-800 bg-stone-950 text-amber-500 focus:ring-0 accent-amber-500"
-              />
-              <label htmlFor="remember" className="text-xs text-stone-400 font-light">
-                Remember me on this device
-              </label>
-            </div>
-
-            {/* Pesan Error */}
-            {errorMessage && (
-              <p className="text-xs text-red-400 text-center">{errorMessage}</p>
-            )}
-          
-            <button
-              disabled={isLoading}
-              className="w-full bg-white text-stone-950 hover:bg-stone-200 disabled:opacity-60 font-medium py-4 rounded-xl text-xs tracking-wider uppercase transition-all shadow-xl flex items-center justify-center gap-2 group mt-6"
-            >
-              <span>{isLoading ? "Signing in..." : "Login"}</span>
-              {!isLoading && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
-            </button>
-          </form>
-
-          <div className="relative my-8">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-stone-800"></div>
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-stone-900 px-3 text-stone-500 tracking-wider">
-                Or Continue With
-              </span>
-            </div>
-          </div>
-
-          <SocialLogin />
         </div>
-      </main>
 
-      <FooterAuth />
+        {/* Password */}
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between">
+            <label className="text-xs uppercase tracking-wider text-stone-600 dark:text-stone-300 font-medium">
+              Password
+            </label>
+
+            <a
+              href="#"
+              className="text-xs text-amber-600 dark:text-amber-500 hover:underline font-light"
+            >
+              Forgot Password?
+            </a>
+          </div>
+
+          <div className="relative">
+            <Lock className="w-4 h-4 text-stone-400 dark:text-stone-500 absolute left-4 top-1/2 -translate-y-1/2" />
+
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              required
+              value={formData.password}
+              onChange={handleInputChange}
+              placeholder="••••••••"
+              className="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 text-sm pl-11 pr-11 py-3.5 rounded-xl focus:outline-none focus:border-amber-500 transition-colors placeholder:text-stone-400 dark:placeholder:text-stone-600"
+            />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 dark:text-stone-500 hover:text-stone-700 dark:hover:text-stone-300 transition-colors"
+            >
+              {showPassword ? (
+                <EyeOff className="w-4 h-4" />
+              ) : (
+                <Eye className="w-4 h-4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Remember Me */}
+        <div className="flex items-center gap-2 pt-1">
+          <input
+            type="checkbox"
+            id="remember"
+            className="rounded border-stone-300 dark:border-stone-800 bg-white dark:bg-stone-950 text-amber-500 focus:ring-0 accent-amber-500"
+          />
+
+          <label
+            htmlFor="remember"
+            className="text-xs text-stone-500 dark:text-stone-400 font-light"
+          >
+            Remember me on this device
+          </label>
+        </div>
+
+        {/* Error Message */}
+        {errorMessage && (
+          <p className="text-xs text-red-500 dark:text-red-400 text-center">
+            {errorMessage}
+          </p>
+        )}
+
+        {/* Login Button */}
+        <button
+          disabled={isLoading}
+          className="w-full bg-stone-900 dark:bg-white text-white dark:text-stone-950 hover:bg-stone-800 dark:hover:bg-stone-200 disabled:opacity-60 font-medium py-4 rounded-xl text-xs tracking-wider uppercase transition-all shadow-xl flex items-center justify-center gap-2 group mt-6"
+        >
+          <span>{isLoading ? "Signing in..." : "Login"}</span>
+
+          {!isLoading && (
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          )}
+        </button>
+      </form>
+
+      {/* Divider */}
+      <div className="relative my-8">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-stone-200 dark:border-stone-800"></div>
+        </div>
+
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-stone-50 dark:bg-stone-900 px-3 text-stone-400 dark:text-stone-500 tracking-wider">
+            Or Continue With
+          </span>
+        </div>
+      </div>
+
+      <SocialLogin />
     </div>
+  </main>
+
+  <FooterAuth />
+</div>
+
   );
 }

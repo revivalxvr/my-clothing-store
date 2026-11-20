@@ -146,6 +146,7 @@ export default function CustomersLayout({
           product_id: item.id,
           quantity: item.qty,
           price: item.price,
+          name: item.name,
         })),
       };
 

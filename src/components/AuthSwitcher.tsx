@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -8,13 +9,13 @@ type AuthSwitcherProps = {
 
 export default function AuthSwitcher({ mode }: AuthSwitcherProps) {
   return (
-    <div className="grid grid-cols-2 p-1 bg-stone-950 rounded-2xl mb-8 border border-stone-800">
+    <div className="grid grid-cols-2 p-1 bg-stone-100 dark:bg-stone-950 rounded-2xl mb-8 border border-stone-200 dark:border-stone-800 transition-colors">
       <Link
         href="/login"
         className={`py-2.5 text-center text-xs font-medium tracking-wider uppercase rounded-xl transition-all ${
           mode === 'login'
-            ? 'bg-stone-800 text-white shadow-md'
-            : 'text-stone-400 hover:text-white'
+            ? 'bg-white dark:bg-stone-800 text-stone-900 dark:text-white shadow-md'
+            : 'text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white'
         }`}
       >
         Sign In
@@ -24,8 +25,8 @@ export default function AuthSwitcher({ mode }: AuthSwitcherProps) {
         href="/register"
         className={`py-2.5 text-center text-xs font-medium tracking-wider uppercase rounded-xl transition-all ${
           mode === 'register'
-            ? 'bg-stone-800 text-white shadow-md'
-            : 'text-stone-400 hover:text-white'
+            ? 'bg-white dark:bg-stone-800 text-stone-900 dark:text-white shadow-md'
+            : 'text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white'
         }`}
       >
         Register
